@@ -94,8 +94,11 @@ public class BoardController {
 	    return "/board/boardMain";
 	}
 	
-	  @RequestMapping("view") public String view() {
-	  
+	  @RequestMapping("view") 
+	  public String view(int seq, Model m) throws Exception {
+		  BoardDTO dto = daoB.select(seq);
+		  m.addAttribute("list", dto);
+		  return "/board/boardView";
 	  }
 	  
 	  @RequestMapping("modify") public String modify() {
