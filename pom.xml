@@ -34,6 +34,7 @@
 		</dependency>
 
 
+
 <!-- Database Related: ojdbc8 version 다운로드-->
 	<dependency>
     	<groupId>com.oracle.database.jdbc</groupId>
@@ -52,6 +53,7 @@
     <artifactId>spring-jdbc</artifactId>
     <version>${org.springframework-version}</version>
 </dependency>				
+
 
 
 
