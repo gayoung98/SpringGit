@@ -55,8 +55,6 @@ public class MemberController {
 	
 	@RequestMapping("main")
 	public String memberList(Model model) throws Exception{
-		List<MemberDTO> list = dao.selectAll();
-		model.addAttribute("list",list);
 		return "member/main";
 	}
 	
@@ -82,6 +80,20 @@ public class MemberController {
 		}
 		return "/";
 	}
+	//마이페이지 이동
+	@GetMapping("mypage")
+	public String mypage(Model model) throws Exception {
+		System.out.println("경로 확인");
+		String id = (String) session.getAttribute("loginId");
+		//이거 지금 값이 아예안나와연? 
+		System.out.println(id);
+		List<MemberDTO> mypage = dao.mypage(id);
+		model.addAttribute("mypage",mypage);
+			return "member/mypage";
+		
+	}
+	
+	
 	
 	@ExceptionHandler
 	public String exceptionHandler(Exception e) {
