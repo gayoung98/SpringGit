@@ -73,9 +73,14 @@ public class MemberController {
 	}
 	
 	//회원탈퇴
-	@GetMapping("signout")
-	public String signout(String id) {
-		return null;
+	@GetMapping("/signout")
+	public String signout(String id) throws Exception {
+		System.out.println(id);
+		int result  = dao.signout(id);
+		if(result > 0) {
+			return "redirect:/";
+		}
+		return "/";
 	}
 	
 	@ExceptionHandler
