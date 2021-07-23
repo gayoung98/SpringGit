@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartRequest;
 
@@ -39,13 +40,14 @@ public class BoardController {
 	public String writeForm() {
 		return "/board/boardWrite";
 	}
+	
 	@RequestMapping("writeProc")
-	public String writeProc(BoardDTO dto) {
+	public String writeProc(BoardDTO dto) throws Exception {
 		System.out.println("write.ass");
 		
 		String id = (String) session.getAttribute("loginId");
 
-		int seq = dao.getSeq();
+		int seq = daoB.getSeq();
 		String title = dto.getTitle();
 		String contents = dto.getContent();
 		String writer = id;
@@ -58,7 +60,7 @@ public class BoardController {
 			System.out.println("글쓰기 입력 완료");
 		}
 
-		return "list";
+		return "/board/list";
 	}
 	
 	@RequestMapping("list")
@@ -95,14 +97,45 @@ public class BoardController {
 	public String view() {
 		
 	}
-	@RequestMapping("modify")
-	public String modify() {
+	
+	@RequestMapping("modiForm")
+	public String modiForm() {
+		return "/board/boardModify";
+	}
+	@RequestMapping("modiProc")
+	public String modiProc(BoardDTO dto) throws Exception {
+		System.out.println("과제 수정 요청");
+
+		String id = (String) session.getAttribute("loginId");
+
 		
+		int seq = daoB.getSeq();
+		String title = dto.getTitle();
+		String contents = dto.getContent();
+		String writer = id;
+		int view_count = 0;
+
+		BoardDTO dtoModify = new BoardDTO(seq, title, contents, writer, null, view_count);
+		
+
+		int result = daoB.update(dtoModify);
+		if(result>0) {
+			System.out.println("글 수정 완료");
+		}
+
+		return "/board/list";
 	}
 	@RequestMapping("delete")
 	public String delete() {
 		
 	}
+	
+	@ExceptionHandler
+	public String exceptionHandlerB(Exception e) {
+		e.printStackTrace();
+		return "error";
+	}
+	
 
 
 	

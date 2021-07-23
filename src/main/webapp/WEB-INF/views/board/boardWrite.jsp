@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Board Write</title>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <link rel="stylesheet"
@@ -74,8 +74,8 @@ body {
 <body>
 	
 	<div class="container p-4 shadow bg-white rounded">
-		<form action="${pageContext.request.contextPath}/write.board"
-			method="post" enctype="multipart/form-data" id="writeForm">
+		<form action="${pageContext.request.contextPath}/board/writeProc"
+			method="post" id="writeForm">
 
 			<div class="row header">
 				<div class="col-12">
@@ -84,18 +84,16 @@ body {
 
 			</div>
 			<div class="row title">
-				<div class="col-12 col-md-8">
+				<div class="col-12">
 					<input type="text" name="title" id="title" placeholder="제목을 입력하세요.">
 				</div>
-				<div class="col-12 col-md-4" style="margin-top: 3%;">
-					<input type="file" name="file">
-				</div>
+
 			</div>
 
 			<div class="row content" style="padding: 0px;">
 				<div class="col-12">
 					<div id="editor"></div>
-					<textarea id="contents" name="contents" style="display: none"></textarea>
+					<textarea id="content" name="content" style="display: none"></textarea>
 
 					<!-- Include the Quill library -->
 					<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -142,7 +140,7 @@ body {
 				.on(
 						"click",
 						function() {
-							location.href = "${pageContext.request.contextPath}/list.board?currentPage=1";
+							location.href = "${pageContext.request.contextPath}/board/list";
 						})
 		$("#submit").on("click", function() {
 			if ($("#title").val() == "") {
