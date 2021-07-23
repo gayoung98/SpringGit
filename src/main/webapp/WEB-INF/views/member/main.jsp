@@ -44,8 +44,11 @@ div {
 	<div class="container shadow bg-white rounded">
 		<div><a href="/board/list?cpage=1">Board</div>
 		<div>MyPage</div>
-		<div>LogOut</div>
+		<div><a href="/member/logout">LogOut</a></div>
 		<div>SignOut</div>
 	</div>
+	<script>
+	
+	</script>
 </body>
 </html>
