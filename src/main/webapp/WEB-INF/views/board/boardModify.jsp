@@ -44,14 +44,7 @@ body {
 	height: 40px;
 }
 
-.navbar>.container-fluid {
-	padding: 0px;
-}
 
-.navbar-nav {
-	flex-grow: 1;
-	justify-content: space-around;
-}
 
 .slide {
 	position: absolute;
@@ -84,34 +77,12 @@ body {
 		var html = myEditor.children[0].innerHTML;
 		$("#contents").html(html);
 
-		$("#fileDel").on("click", function() {
-			let seq = ($(this).attr("seq"));
-
-			$(this).parent().remove();
-			let del = $("<input>");
-			del.attr("type", "hidden");
-			del.attr("name", "delete");
-			del.attr("value", seq);
-			$(".title").append(del);
-
-			let newFile = $("<input>");
-			newFile.attr("type", "file");
-			newFile.attr("name", "file");
-			let newFileBox = $("<div>");
-			newFileBox.attr("class", "col-12");
-			newFileBox.attr("style", "text-align: center");
-			newFileBox.append(newFile);
-			$(".files").append(newFileBox);
-
-		});
-
 	})
 </script>
 
 </head>
 <body>
-	<jsp:include page="/header.jsp" />
-	<jsp:include page="/navibar.jsp" />
+
 	<div class="container p-4 shadow bg-white rounded">
 		<form
 			action="${pageContext.request.contextPath}/board/modiProc?seq=${dto.seq}"
