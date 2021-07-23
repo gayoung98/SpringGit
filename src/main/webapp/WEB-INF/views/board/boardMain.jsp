@@ -142,20 +142,6 @@ $(function(){
 			<c:choose>
 				<c:when test="${list != null}" >
 					<c:forEach var="list" items="${list}">
-						
-						
-						<c:choose>
-						<c:when test="${list.notice eq 'Y'}">
-						<tr style="background-color:#FFFACD" onMouseOver="this.style='background-color:#D3D3D3'" onMouseOut="this.style='background-color:#FFFACD'">
-							<td class="d-sm-table-cell"><i class="material-icons notification_important" style="font-size:20px">&#xe004;</i></td>
-							<td class="d-sm-table-cell" style="width:50%"><a href="/board/view?seq=${list.seq}">${list.title}</a></td>
-							<td class="d-sm-table-cell" style="width:13%">${list.writer}</td>
-							<td class="d-none d-md-table-cell" style="width:20%">${list.write_date}</td>
-							<td class="d-none d-md-table-cell" style="width:10%">${list.view_count}</td>
-						</tr>
-						</c:when>
-						
-						<c:otherwise>
 						<tr>
 							<td class="d-sm-table-cell" style="width:7%">${list.seq}</td>
 							<td class="d-sm-table-cell" style="width:50%"><a href="/board/view?seq=${list.seq}">${list.title}</a></td>
@@ -163,10 +149,6 @@ $(function(){
 							<td class="d-none d-md-table-cell" style="width:20%">${list.write_date}</td>
 							<td class="d-none d-md-table-cell" style="width:10%">${list.view_count}</td>
 						</tr>
-						</c:otherwise>
-						</c:choose>
-							
-						
 					</c:forEach>
 				</c:when>
 		

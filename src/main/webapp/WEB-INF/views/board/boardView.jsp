@@ -576,69 +576,70 @@ table a, #comments a {
 				</div>
 				<div class="title">
 					<ul>
-						<li class="view_cnt">${list.id}</li>
+						<li class="view_cnt">${list.writer}</li>
 						<li class="write_date">${list.write_date}</li>
 						<li class="view_cnt">${list.view_count}</li>
 					</ul>
 				</div>
-				<div class="files">
-					<h4>Files</h4>
-					<c:forEach var="f" items="${flist}">
-						<a
-							href="${pageContext.request.contextPath}/download.file?file_seq=${f.file_seq}&oriName=${f.oriName}&sysName=${f.sysName}">${f.oriName}</a>
-						<br>
-					</c:forEach>
-				</div>
+<!-- 				<div class="files"> -->
+<!-- 					<h4>Files</h4> -->
+<%-- 					<c:forEach var="f" items="${flist}"> --%>
+<!-- 						<a -->
+<%-- 							href="${pageContext.request.contextPath}/download.file?file_seq=${f.file_seq}&oriName=${f.oriName}&sysName=${f.sysName}">${f.oriName}</a> --%>
+<!-- 						<br> -->
+<%-- 					</c:forEach> --%>
+<!-- 				</div> -->
 				<h4>Contents</h4>
 				<div></div>
 				<div class="contents">${list.content}</div>
-				<div id="comments">
-					<h4>Comments</h4>
-					<div id="cmt">
-						<c:forEach var="i" items="${cmt}">
-							<ul class="cmtlist seq_${i.cmt_seq}">
-								<li>
-									<article>
-										<header>
-											<address>
-												By ${i.id}
-												<time datetime="">${i.cmt_date}</time>
-												<!-- <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time> -->
-											</address>
-										</header>
-										<div class="comcont">${i.cmt_content}</div>
-										<!--                               <input type='hidden' name='cmt_content' id='cmt_content'> -->
-										<div class="comcont_btn">
-											<c:if test="${i.id eq login}">
-												<a href="" class="edit" data-toggle="modal"
-													id="cmtModifyViewBtn"> <i class="material-icons"
-													id="cmtModifyViewBtn">&#xE254;</i></a>
-												<a href="#deleteEmployeeModal" class="delete"
-													data-toggle="modal" id="cmtDelete" data-seq="${i.cmt_seq}"
-													data-target="#deleteEmployeeModal"> <i
-													class="material-icons" data-toggle="" title="Delete"
-													id="cmtDeleteBtn">&#xE872;</i></a>
-											</c:if>
-										</div>
-									</article>
-								</li>
-							</ul>
-						</c:forEach>
-					</div>
+<!-- 				<div id="comments"> -->
+<!-- 					<h4>Comments</h4> -->
+<!-- 					<div id="cmt"> -->
+<%-- 						<c:forEach var="i" items="${cmt}"> --%>
+<%-- 							<ul class="cmtlist seq_${i.cmt_seq}"> --%>
+<!-- 								<li> -->
+<!-- 									<article> -->
+<!-- 										<header> -->
+<!-- 											<address> -->
+<%-- 												By ${i.id} --%>
+<%-- 												<time datetime="">${i.cmt_date}</time> --%>
+<!-- 												<time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time> -->
+<!-- 											</address> -->
+<!-- 										</header> -->
+<%-- 										<div class="comcont">${i.cmt_content}</div> --%>
+<!-- 										                              <input type='hidden' name='cmt_content' id='cmt_content'> -->
+<!-- 										<div class="comcont_btn"> -->
+<%-- 											<c:if test="${i.id eq login}"> --%>
+<!-- 												<a href="" class="edit" data-toggle="modal" -->
+<!-- 													id="cmtModifyViewBtn"> <i class="material-icons" -->
+<!-- 													id="cmtModifyViewBtn">&#xE254;</i></a> -->
+<!-- 												<a href="#deleteEmployeeModal" class="delete" -->
+<%-- 													data-toggle="modal" id="cmtDelete" data-seq="${i.cmt_seq}" --%>
+<!-- 													data-target="#deleteEmployeeModal"> <i -->
+<!-- 													class="material-icons" data-toggle="" title="Delete" -->
+<!-- 													id="cmtDeleteBtn">&#xE872;</i></a> -->
+<%-- 											</c:if> --%>
+<!-- 										</div> -->
+<!-- 									</article> -->
+<!-- 								</li> -->
+<!-- 							</ul> -->
+<%-- 						</c:forEach> --%>
+<!-- 					</div> -->
+<!-- 					</div> -->
+					
+					
 					<div class="btn_wrap" align="left">
 						<c:choose>
-							<c:when test="${login eq list.id}">
+							<c:when test="${login eq list.writer}">
 								<a
-									href="${pageContext.request.contextPath}/modifyPage.bor?board_seq=${list.board_seq}"
+									href="/board/modify?seq=${list.seq}"
 									class="btn btn-primary">수정하기</a>
-								<a href="#boardDeleteForm" class="btn btn-danger"
-									data-toggle="modal">삭제하기</a>
+								<a href="/board/delete?seq=${list.seq}" class="btn btn-danger">삭제하기</a>
 							</c:when>
 						</c:choose>
 					</div>
 					<div align="right">
-						<a href="${pageContext.request.contextPath}/list.bor?cpage=1"
-							class="btn btn-secondary">목록으로</a>
+						<a href="/board/list?cpage=1" class="btn btn-secondary">목록으로</a>
 					</div>
 </body>
 </html>

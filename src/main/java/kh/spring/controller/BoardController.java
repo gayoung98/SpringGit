@@ -1,6 +1,5 @@
 package kh.spring.controller;
 
-import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,14 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartRequest;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.spring.config.BoardConfig;
 import kh.spring.dao.BoardDAO;
 import kh.spring.dao.BoardFileDAO;
 import kh.spring.dao.MemberDAO;
 import kh.spring.dto.BoardDTO;
-import kh.spring.dto.BoardFileDTO;
 
 @Controller
 @RequestMapping("/board")
@@ -97,8 +95,10 @@ public class BoardController {
 	}
 
 	@RequestMapping("view")
-	public String view() {
-		
+	public String view(int seq, Model m) throws Exception{
+		BoardDTO dto = daoB.select(seq);
+		  m.addAttribute("list", dto);
+		  return "/board/boardView";
 	}
 	
 	@RequestMapping("modiForm")
@@ -128,9 +128,12 @@ public class BoardController {
 
 		return "/board/list";
 	}
+	
+	 @ResponseBody
 	@RequestMapping("delete")
-	public String delete() {
-		
+	public String delete(int seq) throws Exception {
+		daoB.delete(seq);
+		  return "/board/boardMain?cpage=1";
 	}
 	
 	@ExceptionHandler
@@ -139,8 +142,11 @@ public class BoardController {
 		return "error";
 	}
 	
-
-
+	 
+	  
+	 
+	 
+	 
 
 	
 	
