@@ -100,11 +100,11 @@ float:right;
 $(function(){
 	
 	$("#writeBtn").on("click",function(){
-		location.href ="${pageContext.request.contextPath}/write.bor"
+		location.href ="/board/writeForm"
 	})
 	
 	$("#backBtn").on("click",function(){
-		location.href = "${pageContext.request.contextPath}/list.bor?cpage=1";
+		location.href = "/board/list?cpage=1";
 	})
 	
 	
@@ -148,8 +148,8 @@ $(function(){
 						<c:when test="${list.notice eq 'Y'}">
 						<tr style="background-color:#FFFACD" onMouseOver="this.style='background-color:#D3D3D3'" onMouseOut="this.style='background-color:#FFFACD'">
 							<td class="d-sm-table-cell"><i class="material-icons notification_important" style="font-size:20px">&#xe004;</i></td>
-							<td class="d-sm-table-cell" style="width:50%"><a href="${pageContext.request.contextPath}/detail.bor?board_seq=${list.board_seq}">${list.title}</a></td>
-							<td class="d-sm-table-cell" style="width:13%">${list.id}</td>
+							<td class="d-sm-table-cell" style="width:50%"><a href="/board/view?seq=${list.seq}">${list.title}</a></td>
+							<td class="d-sm-table-cell" style="width:13%">${list.writer}</td>
 							<td class="d-none d-md-table-cell" style="width:20%">${list.write_date}</td>
 							<td class="d-none d-md-table-cell" style="width:10%">${list.view_count}</td>
 						</tr>
@@ -157,9 +157,9 @@ $(function(){
 						
 						<c:otherwise>
 						<tr>
-							<td class="d-sm-table-cell" style="width:7%">${list.board_seq}</td>
-							<td class="d-sm-table-cell" style="width:50%"><a href="${pageContext.request.contextPath}/detail.bor?board_seq=${list.board_seq}">${list.title}</a></td>
-							<td class="d-sm-table-cell" style="width:13%">${list.id}</td>
+							<td class="d-sm-table-cell" style="width:7%">${list.seq}</td>
+							<td class="d-sm-table-cell" style="width:50%"><a href="/board/view?seq=${list.seq}">${list.title}</a></td>
+							<td class="d-sm-table-cell" style="width:13%">${list.writer}</td>
 							<td class="d-none d-md-table-cell" style="width:20%">${list.write_date}</td>
 							<td class="d-none d-md-table-cell" style="width:10%">${list.view_count}</td>
 						</tr>
@@ -174,9 +174,9 @@ $(function(){
 				<c:otherwise>
 					<c:forEach var="searchlist" items="${searchList}">
 					<tr>
-					<td class="d-sm-table-cell" style="width:7%">${searchlist.board_seq}</td>
-					<td class="d-sm-table-cell" style="width:50%"><a href="${pageContext.request.contextPath}/detail.bor?seq=${searchlist.board_seq}">${searchlist.title}</a></td>
-					<td class="d-sm-table-cell" style="width:13%">${searchlist.id}</td>
+					<td class="d-sm-table-cell" style="width:7%">${searchlist.seq}</td>
+					<td class="d-sm-table-cell" style="width:50%"><a href="/board/view?seq=${searchlist.seq}">${searchlist.title}</a></td>
+					<td class="d-sm-table-cell" style="width:13%">${searchlist.writer}</td>
 					<td class="d-none d-md-table-cell" style="width:20%">${searchlist.write_date}</td>
 					<td class="d-none d-md-table-cell" style="width:10%">${searchlist.view_count}</td>
 					</tr>
@@ -206,16 +206,16 @@ $(function(){
 				<c:forEach var="i" items="${navi}" varStatus="s">	
 					<c:choose>
 						<c:when test="${i=='>'}">
-							<li class="page-item"><a href="${pageContext.request.contextPath}/list.bor?cpage=${navi[s.index-1]+1}&category=${category}&searchWord=${searchWord}">Next</a>
+							<li class="page-item"><a href="/board/list?cpage=${navi[s.index-1]+1}&category=${category}&searchWord=${searchWord}">Next</a>
 						</c:when>
 						<c:when test="${i=='<'}">
-							<li class="page-item"><a href="${pageContext.request.contextPath}/list.bor?cpage=${navi[s.index+1]-1}&category=${category}&searchWord=${searchWord}">Previous</a>
+							<li class="page-item"><a href="/board/list?cpage=${navi[s.index+1]-1}&category=${category}&searchWord=${searchWord}">Previous</a>
 						</c:when>
                        	<c:when test="${i==cpage}">
-                           	<li class="page-item" id="currentPage" style="background-color:#17a2b8"><a style="color:white" href="${pageContext.request.contextPath}/list.bor?cpage=${i}&category=${category}&searchWord=${searchWord}">${i}</a>
+                           	<li class="page-item" id="currentPage" style="background-color:#17a2b8"><a style="color:white" href="/board/list?cpage=${i}&category=${category}&searchWord=${searchWord}">${i}</a>
                         </c:when>
                         <c:otherwise>
-                           	<li class="page-item" id="currentPage"><a href="${pageContext.request.contextPath}/list.bor?cpage=${i}&category=${category}&searchWord=${searchWord}">${i}</a>
+                           	<li class="page-item" id="currentPage"><a href="/board/list?cpage=${i}&category=${category}&searchWord=${searchWord}">${i}</a>
                         </c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -227,11 +227,11 @@ $(function(){
 		
 		
 		<div class="controls col-12 search">
-		<form action="${pageContext.request.contextPath}/list.bor?cpage=1" method="post" style="display: inline-block;">
+		<form action="/board/list?cpage=1" method="post" style="display: inline-block;">
 			<div class="float1">
 			<select name="category" class="form-control form-control-inline">
 				<option value="title">제목</option>
-				<option value="id">작성자</option>
+				<option value="writer">작성자</option>
 				<option value="content">내용</option>
 			</select>
 			</div>
