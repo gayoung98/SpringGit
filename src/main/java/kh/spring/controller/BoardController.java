@@ -103,7 +103,10 @@ public class BoardController {
 
 	@RequestMapping("modiForm")
 	public String modiForm(int seq, Model m) throws Exception{
+		System.out.println("modiForm 호출");
 		BoardDTO dto = daoB.select(seq);
+		System.out.println("확인22");
+		System.out.println("제목: "+dto.getTitle());
 		m.addAttribute("dto", dto);
 		return "/board/boardModify";
 	}
@@ -111,24 +114,19 @@ public class BoardController {
 	public String modiProc(BoardDTO dto) throws Exception {
 		System.out.println("과제 수정 요청");
 
-		String id = (String) session.getAttribute("loginId");
 
-
-		int seq = daoB.getSeq();
+		int seq = dto.getSeq();
 		String title = dto.getTitle();
 		String contents = dto.getContent();
-		String writer = id;
-		int view_count = 0;
 
-		BoardDTO dtoModify = new BoardDTO(seq, title, contents, writer, null, view_count);
-
+		BoardDTO dtoModify = new BoardDTO(seq, title, contents, null, null, 0);
 
 		int result = daoB.update(dtoModify);
 		if(result>0) {
 			System.out.println("글 수정 완료");
 		}
 
-		return "/board/view?seq="+String.valueOf(seq);
+		return "redirect:/board/view?seq="+String.valueOf(seq);
 	}
 
 	

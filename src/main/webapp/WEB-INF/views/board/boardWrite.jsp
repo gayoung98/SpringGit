@@ -45,15 +45,6 @@ body {
 	height: 100%;
 }
 
-.navbar>.container-fluid {
-	padding: 0px;
-}
-
-.navbar-nav {
-	flex-grow: 1;
-	justify-content: space-around;
-}
-
 .slide {
 	position: absolute;
 	width: 100%;

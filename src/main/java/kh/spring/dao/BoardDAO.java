@@ -43,7 +43,7 @@ public class BoardDAO {
 	}
 
 	public int update(BoardDTO dto) throws Exception{
-		String sql = "update board set title=?, contents=?  where seq=?";
+		String sql = "update board set title=?, content=?  where seq=?";
 		return jdbc.update(sql, dto.getTitle(), dto.getContent(), dto.getSeq());				
 	}
 
