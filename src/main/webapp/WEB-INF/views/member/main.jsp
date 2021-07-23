@@ -44,8 +44,13 @@ div {
 </head>
 <body>
 	<div class="container shadow bg-white rounded">
+<<<<<<< HEAD
 		<div>Board</div>
 		<div><a href="">MyPage</a></div>
+=======
+		<div><a href="/board/list?cpage=1">Board</div>
+		<div>MyPage</div>
+>>>>>>> 1bbe8948035383870209b452cf841f4e0d8c2688
 		<div>LogOut</div>
 		<div>SignOut</div>
 	</div>

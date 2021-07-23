@@ -32,28 +32,31 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
-		<!-- Database Related -->
-		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8 -->
-		<dependency>
-			<groupId>com.oracle.database.jdbc</groupId>
-			<artifactId>ojdbc8</artifactId>
-			<version>21.1.0.0</version>
-		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-dbcp2</artifactId>
-			<version>2.8.0</version>
-		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
+
+<!-- Database Related: ojdbc8 version 다운로드-->
+	<dependency>
+    	<groupId>com.oracle.database.jdbc</groupId>
+    	<artifactId>ojdbc8</artifactId>
+    	<version>21.1.0.0</version>
+	</dependency>			
+<!-- apache dbcp2 version 2.8.0 다운로드-->
+	<dependency>
+   		 <groupId>org.apache.commons</groupId>
+   		 <artifactId>commons-dbcp2</artifactId>
+   		 <version>2.8.0</version>
+	</dependency>
+<!-- spring-jdbc 다운로드-->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-jdbc</artifactId>
+    <version>${org.springframework-version}</version>
+</dependency>				
+
+
+
+
 				
 		<!-- AspectJ -->
 		<dependency>
