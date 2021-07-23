@@ -34,21 +34,29 @@ div {
     margin-top: 5%;
 }
 
+a{
+    color:black;
+}
+
 .container>div:hover{
     cursor: pointer;
     color: rgb(255, 242, 62);
 }
+
+.container>div>a:hover{
+    cursor: pointer;
+    color: rgb(255, 242, 62);
+    text-decoration: none;
+}
+
 </style>
 </head>
 <body>
 	<div class="container shadow bg-white rounded">
 		<div><a href="/board/list?cpage=1">Board</div>
-		<div>MyPage</div>
+		<div><a href="/memeber/mypage">MyPage</a></div>
 		<div><a href="/member/logout">LogOut</a></div>
 		<div><a href="/member/singout?id=${loginId}">SignOut</a></div>
 	</div>
-	<script>
-	
-	</script>
 </body>
 </html>
