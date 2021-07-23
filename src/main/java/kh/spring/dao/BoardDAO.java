@@ -1,5 +1,6 @@
 package kh.spring.dao;
 
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -15,6 +16,10 @@ import org.springframework.jdbc.core.RowMapper;
 import kh.spring.config.BoardConfig;
 import kh.spring.dto.BoardDTO;
 
+
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class BoardDAO {
 
 	@Autowired
