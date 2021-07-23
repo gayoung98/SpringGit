@@ -42,7 +42,7 @@ div {
 </head>
 <body>
 	<div class="container shadow bg-white rounded">
-		<div>Board</div>
+		<div><a href="/board/list?cpage=1">Board</div>
 		<div>MyPage</div>
 		<div id="logout">LogOut</div>
 		<div>SignOut</div>
