@@ -48,67 +48,79 @@ input {
 	margin-top: 10%;
 }
 
-div>button{
-	display:inline-block;
+div>button {
+	display: inline-block;
 }
 </style>
 </head>
 
 <body>
-	<div class="container p-5 shadow bg-white rounded">
-		<center>마이 페이지</center>
-		<form action="/member/signupProc" method="post">
-			<div class="row">
-				<div class="col-1"></div>
-				<div class="col-10">
-					<div class="row" id="inputBox">
+	<c:choose>
+		<c:when test="${loginId != null }">
+			<c:forEach var="loginId" items="${mypage }">
+			<div class="container p-5 shadow bg-white rounded">
+				<center>마이 페이지</center>
+				<form action="/member/signupProc" method="post">
+					<div class="row">
+						<div class="col-1"></div>
 						<div class="col-8">
-							아이디 : <div class="input">${i.id}</div>
+							<div class="row" id="inputBox">
+								<div class="col-9">
+									아이디 
+								</div>
+								 <div class="input">${loginId.id}</div>
+								<div class="col-9">
+									이름 :
+								</div>
+									<div class="input">${loginId.name}</div>
+								<div class="col-9">
+									전화번호 :
+								</div>
+									<div class="input">${loginId.phone}</div>
+								<div class="col-8">
+									이메일 :
+								</div>
+									<div class="input">${loginId.email}</div>
+								<div class="col-9">
+									우편번호 :
+								</div>
+									<div class="input">${loginId.zipcode}</div>
+								<div class="col-9">
+									주소1 :
+								</div>
+									<div class="input">${loginId.address1}</div>
+								<div class="col-9">
+									주소2 :
+								</div>
+									<div class="input">${loginId.address2}</div>
+							</div>
 						</div>
-                        <div class="col-12" >
-							페스워드 :   <input type=text name=pw id="pw" value="${i.id}" width="100px">
-						</div>
-						<div class="col-9">
-							이름 : <div class="input">${i.name}</div>
-						</div>
-						<div class="col-9">
-							전화번호 : <div class="input">${i.phone}</div>
-						</div>
-						<div class="col-9">
-							이메일 : <div class="input">${i.email}</div>
-						</div>
-						<div class="col-9">
-							우편번호 : <div class="input">${i.zipcode}</div>
-						</div>
-						<div class="col-9">
-							주소1 : <div class="input">${i.adress1}</div>
-						</div>
-						<div class="col-9">
-							주소2 : <div class="input">${i.adress2}</div>
-						</div>
+						<div class="col-1"></div>
 					</div>
-				</div>
-				<div class="col-1"></div>
-			</div>
-            
-            <br>
-            <hr>
-			<div class="row">
-                
-				<div class="col-2"></div>
-				<div class="col-4" >
-					<button class="btn btn-dark w-100" id="signup">비밀번호 수정</button>
-                    
-                </div>
-                
-                <div class="col-4">
-                    <button class="btn btn-dark w-100"><a href="">뒤로 가기</a></button>
-                </div>
 
+					<br>
+					<hr>
+					<div class="row">
+
+						<div class="col-2"></div>
+						<div class="col-8">
+							<button class="btn btn-dark w-100" id="signup">비밀번호 수정</button>
+							<br><br>
+							<button class="btn btn-dark w-100">
+								<a href="/">뒤로 가기</a>
+							</button>
+
+						</div>
+
+						
+					</div>
+
+				</form>
 			</div>
-            
-		</form>
-	</div>
+			</c:forEach>
+		</c:when>
+	</c:choose>
+
 </body>
 
 </html>

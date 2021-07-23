@@ -54,7 +54,7 @@ a{
 <body>
 	<div class="container shadow bg-white rounded">
 		<div><a href="/board/list?cpage=1">Board</a></div>
-		<div><a href="/memeber/mypage">MyPage</a></div>
+		<div><a href="/member/mypage?id=${loginId}">MyPage</a></div>
 		<div><a href="/member/logout">LogOut</a></div>
 		<div><a href="/member/signout?id=${loginId}">SignOut</a></div>
 	</div>

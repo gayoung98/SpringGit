@@ -54,5 +54,25 @@ public class MemberDAO {
 		String sql ="delete from member where id = ?";
 		return jdbc.update(sql,id);
 	}
+	
+	//마이 페이지 
+	public  List<MemberDTO> mypage(String id) throws Exception{
+		String sql ="select * from member where id=?";
+		return jdbc.query(sql, new RowMapper<MemberDTO>() {
+			@Override
+			public MemberDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				MemberDTO dto = new MemberDTO();
+				dto.setId(rs.getString("id"));
+				dto.setPw(rs.getString("pw"));
+				dto.setName(rs.getString("name"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setEmail(rs.getString("email"));
+				dto.setZipcode(rs.getString("zipcode"));
+				dto.setAddress1(rs.getString("address1"));
+				dto.setAddress2(rs.getString("address2"));
+				return dto;
+			}
+		},id);
+	}
 }
 
