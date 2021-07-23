@@ -632,7 +632,7 @@ table a, #comments a {
 						<c:choose>
 							<c:when test="${loginId eq list.writer}">
 								<a
-									href="/board/modify?seq=${list.seq}"
+									href="/board/modiForm?seq=${list.seq}"
 									class="btn btn-primary">수정하기</a>
 								<a href="/board/delete?seq=${list.seq}" class="btn btn-danger">삭제하기</a>
 							</c:when>
