@@ -59,7 +59,7 @@ public class BoardController {
 			System.out.println("글쓰기 입력 완료");
 		}
 
-		return "/board/list";
+		return "redirect:/board/list?cpage=1";
 	}
 
 	
@@ -129,11 +129,11 @@ public class BoardController {
 		return "/board/list";
 	}
 	
-	 @ResponseBody
+	
 	@RequestMapping("delete")
 	public String delete(int seq) throws Exception {
 		daoB.delete(seq);
-		  return "/board/boardMain?cpage=1";
+		return "redirect:/board/list?cpage=1";
 	}
 	
 	@ExceptionHandler
