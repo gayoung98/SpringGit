@@ -46,17 +46,17 @@ public class MemberController {
 		int result = dao.login(id,pw);
 		if(result>0) {
 			session.setAttribute("loginId", id);
-			return "redirect:/member/memberList";
+			return "redirect:/member/main";
 		}else {
 			return "redirect:/";
 		}
 	}
 	
-	@RequestMapping("memberList")
+	@RequestMapping("main")
 	public String memberList(Model model) throws Exception{
 		List<MemberDTO> list = dao.selectAll();
 		model.addAttribute("list",list);
-		return "member/memberList";
+		return "member/main";
 	}
 	
 	@ExceptionHandler
