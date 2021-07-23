@@ -146,8 +146,8 @@ public class BoardDAO {
 	}
 
 	public List<BoardDTO> getPageList(int startNum, int endNum) throws Exception {
-		String sql = "select * from " + "(select " + "row_number() over(order by notice desc, board_seq desc) rnum," + "board_seq,"+"id," + "title,"
-				+ "content," + "write_date," + "view_count, notice " + "from board) " + "where " + "rnum between ? and ?";
+		String sql = "select * from " + "(select " + "row_number() over(order by seq desc) rnum," + "seq,"+"writer," + "title,"
+				+ "content," + "write_date," + "view_count " + "from board) " + "where " + "rnum between ? and ?";
 		return jdbc.query(sql, new RowMapper<BoardDTO>() {
 			@Override
 			public BoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -164,8 +164,8 @@ public class BoardDAO {
 	}
 	// 검색 후, 페이지 리스트를 가져오는 메서드를 오버로딩해서 한번 더 만들기!
 	public List<BoardDTO> getPageList(int startNum, int endNum, String category, String keyword) throws Exception {
-		String sql = "select * from " + "(select " + "row_number() over(order by notice desc, board_seq desc) rnum," + "board_seq,"+"id," + "title,"
-				+ "content," + "write_date," + "view_count, notice " + "from board where "+category+" like ?) " + "where " + "rnum between ? and ?";
+		String sql = "select * from " + "(select " + "row_number() over(order by seq desc) rnum," + "seq,"+"writer," + "title,"
+				+ "content," + "write_date," + "view_count " + "from board where "+category+" like ?) " + "where " + "rnum between ? and ?";
 		return jdbc.query(sql, new RowMapper<BoardDTO>() {
 			@Override
 			public BoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
