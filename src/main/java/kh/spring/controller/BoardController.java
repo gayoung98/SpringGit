@@ -35,6 +35,7 @@ public class BoardController {
 	@Autowired
 	private MemberDAO daoM;
 	
+
 	@RequestMapping("writeForm")
 	public String writeForm() {
 		return "/board/boardWrite";
@@ -60,6 +61,7 @@ public class BoardController {
 
 		return "list";
 	}
+
 	
 	@RequestMapping("list")
 	public String list(int cpage, String category, String searchWord, Model m) throws Exception {
@@ -91,19 +93,19 @@ public class BoardController {
 		
 	    return "/board/boardMain";
 	}
-	@RequestMapping("view")
-	public String view() {
-		
-	}
-	@RequestMapping("modify")
-	public String modify() {
-		
-	}
-	@RequestMapping("delete")
-	public String delete() {
-		
-	}
-
+	
+	  @RequestMapping("view") public String view() {
+	  
+	  }
+	  
+	  @RequestMapping("modify") public String modify() {
+	  
+	  }
+	  
+	  @RequestMapping("delete") public String delete() {
+	  
+	  }
+	 
 
 	
 	

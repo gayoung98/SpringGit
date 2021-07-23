@@ -53,10 +53,10 @@ a{
 </head>
 <body>
 	<div class="container shadow bg-white rounded">
-		<div><a href="/board/list?cpage=1">Board</div>
+		<div><a href="/board/list?cpage=1">Board</a></div>
 		<div><a href="/memeber/mypage">MyPage</a></div>
 		<div><a href="/member/logout">LogOut</a></div>
-		<div>SignOut</div>
+		<div><a href="/member/signout?id=${loginId}">SignOut</a></div>
 	</div>
 </body>
 </html>
