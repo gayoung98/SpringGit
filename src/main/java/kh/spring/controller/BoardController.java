@@ -21,29 +21,29 @@ import kh.spring.dto.BoardDTO;
 @RequestMapping("/board")
 public class BoardController {
 
-	
+
 	@Autowired
 	private HttpSession session;
-	
+
 	@Autowired
 	private BoardDAO daoB;
-	
+
 	@Autowired
 	private BoardFileDAO daoF;
-	
+
 	@Autowired
 	private MemberDAO daoM;
-	
+
 
 	@RequestMapping("writeForm")
 	public String writeForm() {
 		return "/board/boardWrite";
 	}
-	
+
 	@RequestMapping("writeProc")
 	public String writeProc(BoardDTO dto) throws Exception {
 		System.out.println("write.ass");
-		
+
 		String id = (String) session.getAttribute("loginId");
 
 		int seq = daoB.getSeq();
@@ -62,47 +62,49 @@ public class BoardController {
 		return "redirect:/board/list?cpage=1";
 	}
 
-	
+
 	@RequestMapping("list")
 	public String list(int cpage, String category, String searchWord, Model m) throws Exception {
 		int endNum =cpage*BoardConfig.RECORD_COUNT_PER_PAGE;
 		int startNum =endNum -(BoardConfig.RECORD_COUNT_PER_PAGE-1);
-		
+
 		List<BoardDTO> list ;
 		if(searchWord==null||searchWord.contentEquals("")) {
 			list = daoB.getPageList(startNum,endNum);
 		}else {
 			list = daoB.getPageList(startNum,endNum,category,searchWord);
-			
+
 		}
-		
+
 		List<String> pageNavi = daoB.getPageNavi(cpage,category,searchWord);
-		
+
 		List<BoardDTO> searchList = null;
-	    if(searchWord==null||searchWord.contentEquals("")) {
-	    }else {
-	     searchList = daoB.search(category, searchWord);
-	    }
-	    
-	    m.addAttribute("cpage", cpage);
-	    m.addAttribute("searchList",searchList);
-	    m.addAttribute("list", list);
-	    m.addAttribute("navi", pageNavi);
-	    m.addAttribute("category", category);
-	    m.addAttribute("searchWord", searchWord);
-		
-	    return "/board/boardMain";
+		if(searchWord==null||searchWord.contentEquals("")) {
+		}else {
+			searchList = daoB.search(category, searchWord);
+		}
+
+		m.addAttribute("cpage", cpage);
+		m.addAttribute("searchList",searchList);
+		m.addAttribute("list", list);
+		m.addAttribute("navi", pageNavi);
+		m.addAttribute("category", category);
+		m.addAttribute("searchWord", searchWord);
+
+		return "/board/boardMain";
 	}
 
 	@RequestMapping("view")
 	public String view(int seq, Model m) throws Exception{
 		BoardDTO dto = daoB.select(seq);
-		  m.addAttribute("list", dto);
-		  return "/board/boardView";
+		m.addAttribute("list", dto);
+		return "/board/boardView";
 	}
-	
+
 	@RequestMapping("modiForm")
-	public String modiForm() {
+	public String modiForm(int seq, Model m) throws Exception{
+		BoardDTO dto = daoB.select(seq);
+		m.addAttribute("dto", dto);
 		return "/board/boardModify";
 	}
 	@RequestMapping("modiProc")
@@ -111,7 +113,7 @@ public class BoardController {
 
 		String id = (String) session.getAttribute("loginId");
 
-		
+
 		int seq = daoB.getSeq();
 		String title = dto.getTitle();
 		String contents = dto.getContent();
@@ -119,37 +121,37 @@ public class BoardController {
 		int view_count = 0;
 
 		BoardDTO dtoModify = new BoardDTO(seq, title, contents, writer, null, view_count);
-		
+
 
 		int result = daoB.update(dtoModify);
 		if(result>0) {
 			System.out.println("글 수정 완료");
 		}
 
-		return "/board/list";
+		return "/board/view?seq="+String.valueOf(seq);
 	}
-	
+
 	
 	@RequestMapping("delete")
 	public String delete(int seq) throws Exception {
 		daoB.delete(seq);
 		return "redirect:/board/list?cpage=1";
 	}
-	
+
 	@ExceptionHandler
 	public String exceptionHandlerB(Exception e) {
 		e.printStackTrace();
 		return "error";
 	}
-	
-	 
-	  
-	 
-	 
-	 
 
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
 }
