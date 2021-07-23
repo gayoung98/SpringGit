@@ -93,6 +93,11 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping("back")
+	public String back() {
+		return "redirect:/";
+	}
+	
 	
 	
 	@ExceptionHandler
