@@ -28,7 +28,7 @@
 }
 
 body {
-	background-color: #D8E3E7;
+	background-color: #e5dceb;
 }
 
 .container {
@@ -161,7 +161,7 @@ body {
 				$(".ql-editor").focus();
 				return false;
 			} else {
-				let check = confirm("과제를 정말 제출하시겠습니까?");
+				let check = confirm("게시물을 정말 수정하시겠습니까?");
 				if (check) {
 					$("#writeForm").submit();
 				}else{

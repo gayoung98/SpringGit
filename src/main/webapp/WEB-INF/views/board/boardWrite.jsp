@@ -143,7 +143,7 @@ body {
 				$(".ql-editor").focus();
 				return false;
 			} else {
-				let check = confirm("과제를 정말 제출하시겠습니까?");
+				let check = confirm("정말 게시하시겠습니까?");
 				if (check) {
 					$("#writeForm").submit();
 				}else{
