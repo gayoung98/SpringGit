@@ -630,7 +630,7 @@ table a, #comments a {
 					
 					<div class="btn_wrap" align="left">
 						<c:choose>
-							<c:when test="${login eq list.writer}">
+							<c:when test="${loginId eq list.writer}">
 								<a
 									href="/board/modify?seq=${list.seq}"
 									class="btn btn-primary">수정하기</a>

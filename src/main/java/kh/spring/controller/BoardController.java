@@ -131,7 +131,7 @@ public class BoardController {
 		return "/board/view?seq="+String.valueOf(seq);
 	}
 
-	@ResponseBody
+	
 	@RequestMapping("delete")
 	public String delete(int seq) throws Exception {
 		daoB.delete(seq);
