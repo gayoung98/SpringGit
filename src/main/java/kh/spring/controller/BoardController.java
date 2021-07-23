@@ -29,7 +29,7 @@ public class BoardController {
 	private MemberDAO daoM;
 	
 	
-	
+	/*
 	@RequestMapping("writeForm")
 	public String write() {
 		
@@ -38,7 +38,7 @@ public class BoardController {
 	public String writeProc() {
 		
 	}
-	
+	*/
 	@RequestMapping("list")
 	public String list(int cpage, String category, String searchWord, Model m) throws Exception {
 		int endNum =cpage*BoardConfig.RECORD_COUNT_PER_PAGE;
@@ -68,7 +68,7 @@ public class BoardController {
 	    m.addAttribute("searchWord", searchWord);
 		
 	    return "/board/boardMain";
-	}
+	}/*
 	@RequestMapping("view")
 	public String view() {
 		
@@ -81,7 +81,7 @@ public class BoardController {
 	public String delete() {
 		
 	}
-
+*/
 
 	
 	

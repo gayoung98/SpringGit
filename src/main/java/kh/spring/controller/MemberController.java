@@ -59,9 +59,17 @@ public class MemberController {
 		return "member/main";
 	}
 	
+	// 마이페이지로
+	@RequestMapping("mypage")
+	public String mypage() {
+		return "member/mypage";
+	}
+	
 	@ExceptionHandler
 	public String exceptionHandler(Exception e) {
 		e.printStackTrace();
 		return "error";
 	}
+	
+	
 }
