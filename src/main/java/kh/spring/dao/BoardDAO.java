@@ -47,24 +47,24 @@ public class BoardDAO {
 		return jdbc.update(sql, dto.getTitle(), dto.getContent(), dto.getSeq());				
 	}
 
-	// view, modify에 사용할 select문.. 근데 문법이 맞는지 확신 없서용..
-	//	public BoardDTO select(int seq) throws Exception{
-	//		String sql = "select * from board where seq=?";
-	//		return jdbc.queryForObject(sql, new RowMapper<BoardDTO>() {
-	//			@Override
-	//			public BoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-	//
-	//				BoardDTO dto = new BoardDTO();
-	//				dto.setSeq(seq);
-	//				dto.setTitle(rs.getString("title"));
-	//				dto.setContent(rs.getString("content"));
-	//				dto.setWriter(rs.getString("writer"));
-	//				dto.setWrite_date(rs.getDate("write_date"));
-	//				dto.setView_count(rs.getInt("view_count"));
-	//				return dto;
-	//			}
-	//		}, seq);
-	//	}
+	 
+		public BoardDTO select(int seq) throws Exception{
+			String sql = "select * from board where seq=?";
+			return jdbc.queryForObject(sql, new RowMapper<BoardDTO>() {
+				@Override
+				public BoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+	
+					BoardDTO dto = new BoardDTO();
+					dto.setSeq(seq);
+					dto.setTitle(rs.getString("title"));
+					dto.setContent(rs.getString("content"));
+					dto.setWriter(rs.getString("writer"));
+					dto.setWrite_date(rs.getDate("write_date"));
+					dto.setView_count(rs.getInt("view_count"));
+					return dto;
+				}
+			}, seq);
+		}
 
 
 	public int addViewCount(int seq, int viewCount) throws Exception{
