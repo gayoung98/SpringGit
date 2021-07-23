@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -59,10 +60,23 @@ public class MemberController {
 		return "member/main";
 	}
 	
+<<<<<<< HEAD
 	// 마이페이지로
 	@RequestMapping("mypage")
 	public String mypage() {
 		return "member/mypage";
+=======
+	//로그아웃
+	@RequestMapping("logout")
+	public String logout() {
+		session.invalidate();
+		return "redirect:/member/logoutComplete";
+	}
+	
+	@GetMapping("logoutComplete")
+	public String logoutCom() {
+		return "member/logoutComplete";
+>>>>>>> 718f267c853b95ba1d14e09a028d6a45f8a4fac3
 	}
 	
 	@ExceptionHandler

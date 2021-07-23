@@ -53,10 +53,19 @@ a{
 </head>
 <body>
 	<div class="container shadow bg-white rounded">
+<<<<<<< HEAD
 		<div>Board</div>
 		<div><a href="/memeber/mypage">MyPage</a></div>
 		<div>LogOut</div>
+=======
+		<div><a href="/board/list?cpage=1">Board</div>
+		<div>MyPage</div>
+		<div><a href="/member/logout">LogOut</a></div>
+>>>>>>> 718f267c853b95ba1d14e09a028d6a45f8a4fac3
 		<div>SignOut</div>
 	</div>
+	<script>
+	
+	</script>
 </body>
 </html>
