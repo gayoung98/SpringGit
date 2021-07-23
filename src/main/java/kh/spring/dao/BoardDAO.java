@@ -103,8 +103,8 @@ public class BoardDAO {
 	}
 	
 	public List<BoardDTO> getPageList(int startNum, int endNum) throws Exception {
-		String sql = "select * from " + "(select " + "row_number() over(order by notice desc, board_seq desc) rnum," + "board_seq,"+"id," + "title,"
-				+ "content," + "write_date," + "view_count, notice " + "from board) " + "where " + "rnum between ? and ?";
+		String sql = "select * from " + "(select " + "row_number() over(order by seq desc) rnum," + "seq,"+"writer," + "title,"
+				+ "content," + "write_date," + "view_count " + "from board) " + "where " + "rnum between ? and ?";
 		return jdbc.query(sql, new RowMapper<BoardDTO>() {
 			@Override
 			public BoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
