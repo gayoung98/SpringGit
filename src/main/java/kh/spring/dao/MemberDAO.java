@@ -49,5 +49,10 @@ public class MemberDAO {
 			}
 		});
 	}
+	//탈퇴
+	public int signout(String id) throws Exception{
+		String sql ="delete from member where id = ?";
+		return jdbc.update(sql,id);
+	}
 }
 
