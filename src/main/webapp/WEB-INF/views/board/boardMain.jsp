@@ -78,11 +78,11 @@ body {
 	padding:2px;
 }
 .float1{
-	float:left;
-	width:90px
+	display:inline-block;
+	width:90px;
 }
 .float2{
-	float:left;
+	display:inline-block;
 	width:320px
 }
 
@@ -125,9 +125,10 @@ $(function(){
 		</div>
 
 		<div class="row">
-			<table class="table table-striped table-hover" id="table">
+			<div class="col-12">
+			<table class="table table-striped table-hover" id="table" style="width:100%">
 			<thead>
-			<tr>
+			<tr style="text-align:left">
 				<th class="d-sm-table-cell" style="width:7%">글번호</th>
 				<th class="d-sm-table-cell" style="width:50%">제목</th>
 				<th class="d-sm-table-cell" style="width:13%">작성자</th>
@@ -172,6 +173,7 @@ $(function(){
 			</table>
 		</div>
 		</div>
+		</div>
 		
 		<div class="row">
 		<div class="col-12" id="writeBtnDiv">
@@ -183,7 +185,7 @@ $(function(){
 
 		<div class="row" style="text-align: center;">
 		<div class="col-12" >
-			<ul class="pagination">	
+			<ul class="pagination" style="list-style:none; padding:0px">	
 		
 				<c:forEach var="i" items="${navi}" varStatus="s">	
 					<c:choose>
@@ -210,6 +212,7 @@ $(function(){
 		
 		<div class="controls col-12 search">
 		<form action="/board/list?cpage=1" method="post" style="display: inline-block;">
+			
 			<div class="float1">
 			<select name="category" class="form-control form-control-inline">
 				<option value="title">제목</option>
@@ -218,13 +221,14 @@ $(function(){
 			</select>
 			</div>
 			<div class="input-group controls float2">
-			  <input type="text" class="form-control searchWord" style="width:100px; display: inline-block;" placeholder="검색어를 입력하세요" name="searchWord">
+			  <input type="text" class="form-control searchWord" style="width:260px; display: inline-block;" placeholder="검색어를 입력하세요" name="searchWord">
 			  <div class="input-group-btn" style="display: inline;">
-				<button class="btn btn-info" type="submit" style="margin:0; padding:0; width:80px; height:38px">
-				  <i class="glyphicon glyphicon-search"></i> 검색
+				<button class="btn btn-info" type="submit" >
+				  검색
 				</button>
 			  </div>
 			</div>
+			
 		</form>
 		</div>
 		

@@ -60,42 +60,58 @@ div>button {
 			<c:forEach var="loginId" items="${mypage }">
 			<div class="container p-5 shadow bg-white rounded">
 				<center>마이 페이지</center>
-				<form action="/member/signupProc" method="post">
+				<form action="/member/pwupdate" method="post">
 					<div class="row">
-						<div class="col-1"></div>
+						<div class="col-2"></div>
 						<div class="col-8">
 							<div class="row" id="inputBox">
-								<div class="col-9">
+								<div class="col-12">
 									아이디 
+									<hr>
+                                    <div class="input">${loginId.id}</div>
+								
 								</div>
-								 <div class="input">${loginId.id}</div>
-								<div class="col-9">
-									이름 :
+								
+								<div class="col-12">
+									이름
+									<hr>
+                                    <div class="input">${loginId.name}</div>
+                                    
 								</div>
-									<div class="input">${loginId.name}</div>
-								<div class="col-9">
-									전화번호 :
+									
+								<div class="col-12">
+									전화번호
+									<hr>
+                                    <div class="input">${loginId.phone}</div>                               
 								</div>
-									<div class="input">${loginId.phone}</div>
-								<div class="col-8">
-									이메일 :
+									
+								<div class="col-12">
+									이메일
+									<hr>
+                                    <div class="input">${loginId.email}</div>                          
 								</div>
-									<div class="input">${loginId.email}</div>
-								<div class="col-9">
-									우편번호 :
+									
+								<div class="col-12">
+									우편번호
+									<hr>
+                                    <div class="input">${loginId.zipcode}</div>        
 								</div>
-									<div class="input">${loginId.zipcode}</div>
-								<div class="col-9">
+									
+								<div class="col-12">
 									주소1 :
+									<hr>
+                                    <div class="input">${loginId.address1}</div>              
 								</div>
-									<div class="input">${loginId.address1}</div>
-								<div class="col-9">
+									
+								<div class="col-12">
 									주소2 :
+									<hr>
+                                    <div class="input">${loginId.address2}</div>             
 								</div>
-									<div class="input">${loginId.address2}</div>
+									
 							</div>
 						</div>
-						<div class="col-1"></div>
+						
 					</div>
 
 					<br>
@@ -104,10 +120,10 @@ div>button {
 
 						<div class="col-2"></div>
 						<div class="col-8">
-							<button class="btn btn-dark w-100" id="signup">비밀번호 수정</button>
+							
 							<br><br>
 							<button class="btn btn-dark w-100">
-								<a href="/">뒤로 가기</a>
+								<a href="/member/back">뒤로 가기</a>
 							</button>
 
 						</div>
@@ -122,5 +138,6 @@ div>button {
 	</c:choose>
 
 </body>
+
 
 </html>
