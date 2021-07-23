@@ -44,8 +44,13 @@ div {
 	<div class="container shadow bg-white rounded">
 		<div>Board</div>
 		<div>MyPage</div>
-		<div>LogOut</div>
+		<div id="logout">LogOut</div>
 		<div>SignOut</div>
 	</div>
+	<script>
+	$("#logout").on("click",function(){
+		location.href="/member/logout"
+	})
+	</script>
 </body>
 </html>
