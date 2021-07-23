@@ -72,6 +72,12 @@ public class MemberController {
 		return "member/logoutComplete";
 	}
 	
+	//회원탈퇴
+	@GetMapping("signout")
+	public String signout(String id) {
+		return null;
+	}
+	
 	@ExceptionHandler
 	public String exceptionHandler(Exception e) {
 		e.printStackTrace();

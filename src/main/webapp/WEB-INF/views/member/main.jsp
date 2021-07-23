@@ -45,7 +45,7 @@ div {
 		<div><a href="/board/list?cpage=1">Board</div>
 		<div>MyPage</div>
 		<div><a href="/member/logout">LogOut</a></div>
-		<div>SignOut</div>
+		<div><a href="/member/singout?id=${loginId}">SignOut</a></div>
 	</div>
 	<script>
 	
