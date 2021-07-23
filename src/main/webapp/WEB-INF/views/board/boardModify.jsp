@@ -114,8 +114,8 @@ body {
 	<jsp:include page="/navibar.jsp" />
 	<div class="container p-4 shadow bg-white rounded">
 		<form
-			action="${pageContext.request.contextPath}/modiProc.ass?ass_seq=${boardView.seq}"
-			method="post" enctype="multipart/form-data">
+			action="${pageContext.request.contextPath}/board/modiProc?seq=${dto.seq}"
+			method="post">
 
 			<div class="row header">
 				<div class="col-12">
@@ -129,7 +129,7 @@ body {
 					<b>제목</b>
 				</div>
 				<div class="col-7">
-					<input type="text" name="title" id="title" value="${boardView.title}">
+					<input type="text" name="title" id="title" value="${dto.title}">
 				</div>
 				<div class="col-2"></div>
 			</div>
@@ -137,7 +137,7 @@ body {
 
 			<div class="row content" style="padding: 0px;">
 				<div class="col-12">
-					<div id="editor">${boardView.content}</div>
+					<div id="editor">${dto.content}</div>
 					<textarea id="content" name="content" style="display: none"></textarea>
 
 					<!-- Include the Quill library -->
@@ -178,7 +178,7 @@ body {
 	</div>
 	<script>
 		$("#back").on("click", function() {
-			location.href = "board/view?seq=" + ${assView.seq};
+			location.href = "board/view?seq=" + ${dto.seq};
 		})
 		$("#submit").on("click", function() {
 			if ($("#title").val() == "") {
