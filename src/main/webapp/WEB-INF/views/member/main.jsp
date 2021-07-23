@@ -32,18 +32,20 @@ div {
 }
 .container>div{
     margin-top: 5%;
+    color:black;
 }
 
 .container>div:hover{
     cursor: pointer;
     color: rgb(255, 242, 62);
+    
 }
 </style>
 </head>
 <body>
 	<div class="container shadow bg-white rounded">
 		<div>Board</div>
-		<div>MyPage</div>
+		<div><a href="">MyPage</a></div>
 		<div>LogOut</div>
 		<div>SignOut</div>
 	</div>
