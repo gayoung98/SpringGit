@@ -20,7 +20,10 @@
 
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous" />
 <style>
 * {
 	box-sizing: border-box;
@@ -36,15 +39,13 @@ body {
 }
 
 .row {
-	margin: 4%;
+	margin: 3%;
 }
 
 #title {
 	width: 100%;
 	height: 40px;
 }
-
-
 
 .slide {
 	position: absolute;
@@ -62,21 +63,32 @@ body {
 </style>
 <script>
 	$(function() {
-		
+
 		//quill editor에 마우스를 올렸다가 다른 부분을 클릭했을 때 작동하는
 		//on blur를 사용한 코드는 html 내용을 가져가는 방식은
 		//modify 영역에서는 문제가 있음.
-		
+
 		//제목만 바꾸거나, 파일만 바꾸고 싶다든지 할 때에는 애초에 editor에 마우스를 클릭하지 않았을 수 있음.
 		//그렇게 되면 기존 내용이 담겨오는 게 아니라 그냥 담긴 내용이 없이 날라감.
-		
+
 		//이를 보완하기 위해 페이지 로딩 직후 기존에 넣어놨던 내용을 textarea에 넣어주는 코드를 넣어둠.
 		//이걸 넣어주면, 마우스를 에디터에 넣었다가 나오지 않아도 기존 내용이 넘어가게끔 해결!
-		
+
 		var myEditor = document.querySelector('#editor');
 		var html = myEditor.children[0].innerHTML;
-		$("#contents").html(html);
+		$("#content").html(html);
 
+		$("#fileDel").on("click", function() {
+			let seq = ($(this).attr("seq"));
+
+			$(this).parent().remove();
+			let del = $("<input>");
+			del.attr("type", "hidden");
+			del.attr("name", "delTarget");
+			del.attr("value", seq);
+			$(".title").append(del);
+
+		});
 	})
 </script>
 
@@ -86,7 +98,7 @@ body {
 	<div class="container p-4 shadow bg-white rounded">
 		<form
 			action="${pageContext.request.contextPath}/board/modiProc?seq=${dto.seq}"
-			method="post">
+			method="post" enctype="multipart/form-data">
 
 			<div class="row header">
 				<div class="col-12">
@@ -105,6 +117,26 @@ body {
 				<div class="col-2"></div>
 			</div>
 
+			<div class="row files">
+
+				<c:choose>
+					<c:when test="${fileList!=null}">
+						<c:forEach var="f" items="${fileList}" varStatus="s">
+							<div class="col-12" id="fileBox" style="padding: 0.5%;">
+								${f.oriName}
+								<button type="button" class="btn btn-dark" id="fileDel" seq="${f.seq}">X</button>
+							</div>
+						</c:forEach>
+						<div class="col-12">
+						<input type="file" name="file" multiple="multiple"></input>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<input type="file" name="file" multiple="multiple"></input>
+					</c:otherwise>
+				</c:choose>
+
+			</div>
 
 			<div class="row content" style="padding: 0px;">
 				<div class="col-12">
@@ -149,7 +181,11 @@ body {
 	</div>
 	<script>
 		$("#back").on("click", function() {
-			location.href = "board/view?seq=" + ${dto.seq};
+			location.href = "board/view?seq=" + $
+			{
+				dto.seq
+			}
+			;
 		})
 		$("#submit").on("click", function() {
 			if ($("#title").val() == "") {
@@ -164,7 +200,7 @@ body {
 				let check = confirm("게시물을 정말 수정하시겠습니까?");
 				if (check) {
 					$("#writeForm").submit();
-				}else{
+				} else {
 					return false;
 				}
 			}

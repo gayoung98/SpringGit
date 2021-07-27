@@ -66,7 +66,7 @@ body {
 	
 	<div class="container p-4 shadow bg-white rounded">
 		<form action="${pageContext.request.contextPath}/board/writeProc"
-			method="post" id="writeForm">
+			method="post" enctype="multipart/form-data" id="writeForm">
 
 			<div class="row header">
 				<div class="col-12">
@@ -75,8 +75,11 @@ body {
 
 			</div>
 			<div class="row title">
-				<div class="col-12">
+				<div class="col-12 col-md-8">
 					<input type="text" name="title" id="title" placeholder="제목을 입력하세요.">
+				</div>
+				<div class="col-12 col-md-4" style="margin-top: 3%;">
+					<input type="file" name="file" multiple="multiple">
 				</div>
 
 			</div>

@@ -44,7 +44,7 @@ public class BoardFileDTO {
 	public Date getReg_Date() {
 		return reg_date;
 	}
-	public void setReg_Date(Date reg_date) {
+	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
 	public int getParent() {

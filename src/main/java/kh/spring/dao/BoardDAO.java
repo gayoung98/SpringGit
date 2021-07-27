@@ -47,24 +47,24 @@ public class BoardDAO {
 		return jdbc.update(sql, dto.getTitle(), dto.getContent(), dto.getSeq());				
 	}
 
-	 
-		public BoardDTO select(int seq) throws Exception{
-			String sql = "select * from board where seq=?";
-			return jdbc.queryForObject(sql, new RowMapper<BoardDTO>() {
-				@Override
-				public BoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-	
-					BoardDTO dto = new BoardDTO();
-					dto.setSeq(seq);
-					dto.setTitle(rs.getString("title"));
-					dto.setContent(rs.getString("content"));
-					dto.setWriter(rs.getString("writer"));
-					dto.setWrite_date(rs.getDate("write_date"));
-					dto.setView_count(rs.getInt("view_count"));
-					return dto;
-				}
-			}, seq);
-		}
+
+	public BoardDTO select(int seq) throws Exception{
+		String sql = "select * from board where seq=?";
+		return jdbc.queryForObject(sql, new RowMapper<BoardDTO>() {
+			@Override
+			public BoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+				BoardDTO dto = new BoardDTO();
+				dto.setSeq(seq);
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setWriter(rs.getString("writer"));
+				dto.setWrite_date(rs.getDate("write_date"));
+				dto.setView_count(rs.getInt("view_count"));
+				return dto;
+			}
+		}, seq);
+	}
 
 
 	public int addViewCount(int seq, int viewCount) throws Exception{
@@ -73,12 +73,12 @@ public class BoardDAO {
 	}
 
 
-	private int getRecordCount() throws Exception {
+	public int getRecordCount() throws Exception {
 		String sql = "select count(*) from board";
 		return jdbc.queryForObject(sql, Integer.class);
 	}
 	// 오버 로딩해서 다시 하나 더 만들기
-	private int getRecordCount(String category, String keyword) throws Exception {
+	public int getRecordCount(String category, String keyword) throws Exception {
 		String sql = "select count(*) from board where " + category + " like ?";
 		return jdbc.queryForObject(sql, Integer.class);
 	}
