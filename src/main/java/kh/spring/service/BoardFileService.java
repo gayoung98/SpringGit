@@ -34,14 +34,12 @@ public class BoardFileService {
 	public List<BoardFileDTO> selectAll(int parent) throws Exception {
 		return dao.selectAll(parent);
 	}
-	public File mkdir(String realPath) {
+
+	public void uploadFiles(int seq, String realPath, MultipartFile[] file) throws Exception{
 		File filesPath = new File(realPath);
 		if(!filesPath.exists()) {
 			filesPath.mkdir();
 		}
-		return filesPath;
-	}
-	public void uploadFiles(int seq, File filesPath, MultipartFile[] file) throws Exception{
 		for(MultipartFile tmp : file) {
 			if(tmp.getSize()>0) {
 				String oriName = tmp.getOriginalFilename();
@@ -56,7 +54,11 @@ public class BoardFileService {
 			}
 		}	
 	}
-	public void deleteFiles(File filesPath, String[] delTarget) throws Exception{
+	public void deleteFiles(String realPath, String[] delTarget) throws Exception{
+		File filesPath = new File(realPath);
+		if(!filesPath.exists()) {
+			filesPath.mkdir();
+		}
 		for(String del : delTarget) {
 			System.out.println("지울 파일 번호 "+ del);
 

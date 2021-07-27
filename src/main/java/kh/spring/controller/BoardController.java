@@ -53,26 +53,17 @@ public class BoardController {
 		String id = (String) session.getAttribute("loginId");
 
 		int seq = serviceB.getSeq();
-		String title = dto.getTitle();
-		String contents = dto.getContent();
-		String writer = id;
-		int view_count = 0;
+		dto.setSeq(seq);
+		dto.setWriter(id);
 
-		BoardDTO dtoInsert = new BoardDTO(seq, title, contents, writer, null, view_count);
-
-		int insert = serviceB.insert(dtoInsert);
+		int insert = serviceB.insert(dto);
 		if(insert>0) {
 			System.out.println("글쓰기 입력 완료");
 		}
 
-
 		String realPath = session.getServletContext().getRealPath("files");
-		File filesPath = serviceBF.mkdir(realPath);
 
-
-		serviceBF.uploadFiles(seq, filesPath, file);	
-
-
+		serviceBF.uploadFiles(seq, realPath, file);	
 
 		return "redirect:/board/list?cpage=1";
 	}
@@ -80,24 +71,10 @@ public class BoardController {
 
 	@RequestMapping("list")
 	public String list(int cpage, String category, String searchWord, Model m) throws Exception {
-		int endNum =cpage*BoardConfig.RECORD_COUNT_PER_PAGE;
-		int startNum =endNum -(BoardConfig.RECORD_COUNT_PER_PAGE-1);
 
-		List<BoardDTO> list ;
-		if(searchWord==null||searchWord.contentEquals("")) {
-			list = serviceB.getPageList(startNum,endNum);
-		}else {
-			list = serviceB.getPageList(startNum,endNum,category,searchWord);
-
-		}
-
+		List<BoardDTO> list = serviceB.list(cpage, category,  searchWord);
 		List<String> pageNavi = serviceB.getPageNavi(cpage,category,searchWord);
-
-		List<BoardDTO> searchList = null;
-		if(searchWord==null||searchWord.contentEquals("")) {
-		}else {
-			searchList = serviceB.search(category, searchWord);
-		}
+		List<BoardDTO> searchList = serviceB.searchList(category, searchWord);
 
 		m.addAttribute("cpage", cpage);
 		m.addAttribute("searchList",searchList);
@@ -134,29 +111,20 @@ public class BoardController {
 	public String modiProc(BoardDTO dto, String[] delTarget, MultipartFile[] file) throws Exception {
 		System.out.println("과제 수정 요청");
 
-
 		int seq = dto.getSeq();
-		String title = dto.getTitle();
-		String contents = dto.getContent();
 
-		BoardDTO dtoModify = new BoardDTO(seq, title, contents, null, null, 0);
-
-		int result = serviceB.update(dtoModify);
+		int result = serviceB.update(dto);
 		if(result>0) {
 			System.out.println("글 수정 완료");
 		}
 
 		String realPath = session.getServletContext().getRealPath("files");
-		File filesPath = serviceBF.mkdir(realPath);
-		
+
 		if(delTarget!= null) {  
-			serviceBF.deleteFiles(filesPath, delTarget);
+			serviceBF.deleteFiles(realPath, delTarget);
 		}
 
-
-		serviceBF.uploadFiles(seq, filesPath, file);
-
-
+		serviceBF.uploadFiles(seq, realPath, file);
 
 		return "redirect:/board/view?seq="+String.valueOf(seq);
 	}
