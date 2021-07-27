@@ -65,9 +65,9 @@ public class BoardDAO {
 	}
 
 
-	public int addViewCount(int seq, int viewCount) throws Exception{
-		String sql = "update ass set viewCount=? where seq=?";
-		return jdbc.update(sql, ++viewCount, seq);
+	public int addViewCount(int seq, int view_count) throws Exception{
+		String sql = "update board set view_count=? where seq=?";
+		return jdbc.update(sql, ++view_count, seq);
 	}
 
 

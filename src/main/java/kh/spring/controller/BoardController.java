@@ -89,6 +89,8 @@ public class BoardController {
 	@RequestMapping("view")
 	public String view(int seq, Model m) throws Exception{
 		BoardDTO dto = serviceB.select(seq);
+		serviceB.addViewCount(seq, dto.getView_count());
+		dto = serviceB.select(seq); //view_count +1된 dto
 		List<BoardFileDTO> fileList = serviceBF.selectAll(seq);
 
 		m.addAttribute("list", dto);
