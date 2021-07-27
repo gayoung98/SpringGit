@@ -67,25 +67,10 @@ public class BoardController {
 
 
 		String realPath = session.getServletContext().getRealPath("files");
-		File filesPath = new File(realPath);
-		if(!filesPath.exists()) {
-			filesPath.mkdir();
-		}
+		File filesPath = serviceBF.mkdir(realPath);
 
 
-		for(MultipartFile tmp : file) {
-			if(tmp.getSize()>0) {
-				String oriName = tmp.getOriginalFilename();
-				String sysName = UUID.randomUUID().toString().replaceAll("-", "")+"_"+oriName;
-				System.out.println("parent: "+seq);
-				if(serviceBF.insert(new BoardFileDTO(0, oriName, sysName, null, seq))>0) {
-					System.out.println("parent: "+seq);
-					System.out.println("DB에 파일 저장 완료");
-					tmp.transferTo(new File(filesPath.getAbsolutePath()+"/"+sysName));
-					System.out.println(filesPath.getAbsolutePath());
-				}
-			}
-		}	
+		serviceBF.uploadFiles(seq, filesPath, file);	
 
 
 
