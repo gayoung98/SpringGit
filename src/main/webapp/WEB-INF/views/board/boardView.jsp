@@ -581,14 +581,13 @@ table a, #comments a {
 						<li class="view_cnt">${list.view_count}</li>
 					</ul>
 				</div>
-<!-- 				<div class="files"> -->
-<!-- 					<h4>Files</h4> -->
-<%-- 					<c:forEach var="f" items="${flist}"> --%>
-<!-- 						<a -->
-<%-- 							href="${pageContext.request.contextPath}/download.file?file_seq=${f.file_seq}&oriName=${f.oriName}&sysName=${f.sysName}">${f.oriName}</a> --%>
-<!-- 						<br> -->
-<%-- 					</c:forEach> --%>
-<!-- 				</div> -->
+ 				<div class="files">
+ 					<h4>Files</h4>
+ 					<c:forEach var="f" items="${fileList}" >
+ 						<a href="/board/download?oriName=${f.oriName}&sysName=${f.sysName}">${f.oriName}</a>
+ 						<br> 
+ 					</c:forEach>
+				</div> 
 				<h4>Contents</h4>
 				<div></div>
 				<div class="contents">${list.content}</div>

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kh.spring.dao.MemberDAO;
 import kh.spring.dto.MemberDTO;
+import kh.spring.service.MemberService;
 
 @Controller
 @RequestMapping("/member")
@@ -22,7 +22,7 @@ public class MemberController {
 	private HttpSession session;
 	
 	@Autowired
-	private MemberDAO dao;
+	private MemberService serviceM;
 	
 	@RequestMapping("signup")
 	public String signup() {
@@ -32,19 +32,19 @@ public class MemberController {
 	@ResponseBody 
 	@RequestMapping(value="duplCheck", produces="text/html;charset=utf8")
 	public String duplCheck(String id) throws Exception {
-		int result = dao.idCheck(id);
+		int result = serviceM.idCheck(id);
 		return String.valueOf(result);   
 	}
 	
 	@RequestMapping("signupProc")
 	public String signupProc(MemberDTO dto) throws Exception{
-		int result = dao.join(dto);
+		serviceM.join(dto);
 		return "redirect:/";
 	}
 	
 	@RequestMapping("loginProc")
 	public String loginProc(String id, String pw) throws Exception{
-		int result = dao.login(id,pw);
+		int result = serviceM.login(id,pw);
 		if(result>0) {
 			session.setAttribute("loginId", id);
 			return "redirect:/member/main";
@@ -74,7 +74,7 @@ public class MemberController {
 	@GetMapping("/signout")
 	public String signout(String id) throws Exception {
 		System.out.println(id);
-		int result  = dao.signout(id);
+		int result  = serviceM.signout(id);
 		if(result > 0) {
 			return "redirect:/";
 		}
@@ -87,7 +87,7 @@ public class MemberController {
 		String id = (String) session.getAttribute("loginId");
 		//이거 지금 값이 아예안나와연? 
 		System.out.println(id);
-		List<MemberDTO> mypage = dao.mypage(id);
+		List<MemberDTO> mypage = serviceM.mypage(id);
 		model.addAttribute("mypage",mypage);
 			return "member/mypage";
 		
